@@ -1,12 +1,14 @@
 # DLC
 
 npm install
+
 node server.js
+
 localhost:8080
 
 
 Architecture :
-- BDD : MongoDB
+- BDD : MySQL
 - Front : HTML CSS Jquery
 - Back : NodesJs
 - Intégration continue : Jenkins
