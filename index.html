@@ -8,56 +8,27 @@
 </head>
 
 <body>
-	<input id="searchMovie" type="text" placeholder="chercher un film">
-	<button onclick="search()">Search</button>
+	<div class="topbar">
+		<div class="searchbar">
+			<input id="searchMovie" type="text" placeholder="chercher un film">
+			<button onclick="search()"><i class="fa fa-search"></i></button>
+		</div>
+
+	</div>
 	<div class="w3-container w3-centered">
 	  <table class="w3-table-all">
 		<thead>
 		  <tr class="w3-black">
 			<th>Affiche</th>
 			<th>Nom du film</th>
+			<th>Année</th>
+			<th>Genres</th>
 			<th>Acteurs</th>
 			<th>Notes</th>
 		  </tr>
 		</thead>
-		<tr>
-		  <td><img src="http://fr.web.img3.acsta.net/c_215_290/pictures/18/07/02/17/25/3643090.jpg" alt="affiche"></img></td>
-		  <td>Harry Potter à l'école des sorciers</td>
-		  <td>
-			Daniel Radcliffe
-			Rupert Grint
-			Emma Watson
-			Robbie Coltrane
-			Richard Harris
-			Ian Hart
-			Maggie Smith
-			Alan Rickman
-		  </td>
-		  <td>
-			<span class="fa fa-star checked"></span>
-			<span class="fa fa-star checked"></span>
-			<span class="fa fa-star checked"></span>
-			<span class="fa fa-star checked"></span>
-			<span class="fa fa-star checked"></span>
-		  </td>
-		</tr>
-		<tr>
-		  <td><img src="http://fr.web.img2.acsta.net/c_215_290/medias/nmedia/00/02/16/27/69218096_af.jpg" alt="affiche"></img></td>
-		  <td>Le Seigneur des anneaux : La Communauté de l'anneau</td>
-		  <td>
-			Elijah Wood
-			Ian McKellen
-			Viggo Mortensen
-			Sean Astin
-		  </td>
-		  <td>
-			<span class="fa fa-star checked"></span>
-			<span class="fa fa-star checked"></span>
-			<span class="fa fa-star checked"></span>
-			<span class="fa fa-star checked"></span>
-			<span class="fa fa-star checked"></span>
-		  </td>
-		</tr>
+		<tbody id="movietable">
+		</tbody>
 	  </table>
 	</div>
 
