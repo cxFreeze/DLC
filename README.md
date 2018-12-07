@@ -14,4 +14,4 @@ Architecture :
 - Load balancer : Nginx
 - Intégration continue : Jenkins
 - Déploiment : Script Bash
-- Tests : Mocha
+- Tests : Mocha, Supertest, Should
