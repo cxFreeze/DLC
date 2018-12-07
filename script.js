@@ -15,10 +15,10 @@ function search(){
 			for (; i<5;i++){
 				note+="<span class='fa fa-star'></span>"
 			}
-			$('#movietable').append("<tr class='movie'><td><img style='height:200px' src='"+poster+"'></td><td>"+data[movie].originalTitle+"</td><td>"+data[movie].startYear+"</td><td>"+data[movie].genres+"</td><td></td><td>"+note+"</td></tr>")		
+			$('#movietable').append("<tr class='movie'><td><img style='height:150px' src='"+poster+"'></td><td>"+data[movie].originalTitle+"</td><td>"+data[movie].startYear+"</td><td>"+data[movie].genres.replace(/,/g, ", ")+"</td><td></td><td>"+note+"</td></tr>")		
 		}			
 	}).fail(function(){ 
-		alert('something went wrong please try again');
+		console.log('something went wrong please try again');
 	});
 }
 
