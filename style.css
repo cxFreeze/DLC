@@ -27,10 +27,11 @@ td{
 }
 
 .searchbutton{
-	height:34px;
+	height:40px;
 }
 
 #searchMovie{
+	height:40px;
 	width:450px;
 	padding:0;
 }
