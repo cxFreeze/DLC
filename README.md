@@ -2,9 +2,9 @@
 
 npm install
 
-node server.js
+npm start
 
-localhost:8080
+localhost:80
 
 
 Architecture :

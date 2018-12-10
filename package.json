@@ -1,0 +1,28 @@
+{
+  "name": "dlc",
+  "version": "1.0.0",
+  "description": "Projet DLC",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node test/test.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kiko35/DLC.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kiko35/DLC/issues"
+  },
+  "homepage": "https://github.com/kiko35/DLC#readme",
+  "dependencies": {
+    "mysql": "^2.16.0",
+    "should": "^13.2.3",
+    "supertest": "^3.3.0"
+  }
+}
