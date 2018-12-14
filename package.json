@@ -22,6 +22,7 @@
   "homepage": "https://github.com/kiko35/DLC#readme",
   "dependencies": {
     "describe": "^1.2.0",
+    "expect": "^23.6.0",
     "mysql": "^2.16.0",
     "should": "^13.2.3",
     "supertest": "^3.3.0"
