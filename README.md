@@ -14,7 +14,7 @@ Architecture :
 - Load balancer : Nginx
 - Intégration continue : Jenkins
 - Déploiment : Script Bash
-- Tests : Mocha, Supertest, Should
+- Tests : Supertest
 
 
 https://blog.tentamen.eu/jenkins-and-github-integration-using-webhooks/
