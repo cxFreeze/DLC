@@ -9,6 +9,7 @@ Architecture :
 - Intégration continue : Jenkins
 - Déploiment : Script Bash
 - Tests : Supertest
+- Monitoring : Nagios
 
 JENKINS :
 
