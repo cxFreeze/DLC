@@ -1,11 +1,5 @@
 # DLC
-
-npm install
-
-npm start
-
-localhost:80
-
+http://148.60.11.217:80
 
 Architecture :
 - BDD : MySQL
@@ -15,9 +9,6 @@ Architecture :
 - Intégration continue : Jenkins
 - Déploiment : Script Bash
 - Tests : Supertest
-
-
-https://blog.tentamen.eu/jenkins-and-github-integration-using-webhooks/
 
 JENKINS :
 
