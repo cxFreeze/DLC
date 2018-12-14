@@ -12,7 +12,6 @@ const connection = mysql.createConnection({
 connection.connect();
 
 http.createServer(function (req, res) {
-	
 	if(req.method === "POST"){
 			var body = "";
 			req.on("data", function (data) {
@@ -21,7 +20,7 @@ http.createServer(function (req, res) {
 			req.on("end", function(){
 				try{
 					const json = JSON.parse(body);
-					if(req.url === "/searchMovie"){
+					if(req.url === "//searchMovie"){
 						connection.query('SELECT * FROM `movies` WHERE `originalTitle` like ? LIMIT 10', "%"+json['movie']+"%", function (error, results, fields) {
 							if(error){
 								res.writeHead(500, "Internal Server Error", {"Content-Type": "text/plain"});
@@ -32,7 +31,7 @@ http.createServer(function (req, res) {
 								res.end();								
 							}
 						});
-					}else if(req.url === "/searchPerson"){
+					}else if(req.url === "//searchPerson"){
 						throw "unknown";
 					}else{
 						throw "unknown";
@@ -50,19 +49,19 @@ http.createServer(function (req, res) {
 				res.write(data);
 				res.end();
 			});
-		} else if (req.url == '/style.css') {
+		} else if (req.url == '//style.css') {
 			fs.readFile('style.css', function (err, data) {
 				res.writeHead(200, "OK", { 'Content-Type': 'text/css' });
 				res.write(data);
 				res.end();
 			});
-		} else if (req.url == '/script.js') {
+		} else if (req.url == '//script.js') {
 			fs.readFile('script.js', function (err, data) {
 				res.writeHead(200, "OK", { 'Content-Type': 'text/js' });
 				res.write(data);
 				res.end();
 			});
-		} else if (req.url == '/no-poster.jpg') {
+		} else if (req.url == '//no-poster.jpg') {
 			fs.readFile('no-poster.jpg', function (err, data) {
 				res.writeHead(200, "OK", { 'Content-Type': 'image/jpeg' });
 				res.write(data);
@@ -73,5 +72,5 @@ http.createServer(function (req, res) {
 				res.end();
 		}
 	}
-}).listen(80);
+}).listen(8000);
 
