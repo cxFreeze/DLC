@@ -23,3 +23,4 @@ JENKINS :
 
 http://148.60.11.217:8080/
 
+admin:493dffbd6bd745d39180a4895cb30697
