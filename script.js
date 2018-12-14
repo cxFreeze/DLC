@@ -1,11 +1,11 @@
 function search(){
-	$.post("node/searchMovie", JSON.stringify({movie: $("#searchMovie").val()}), async function (data, status) {
+	$.post("app/searchMovie", JSON.stringify({movie: $("#searchMovie").val()}), async function (data, status) {
 		$('#movietable').empty()
 		console.log(data)
 		for (let movie in data) {
 			let poster = await getImage(data[movie].originalTitle)
 			if (poster == ''){
-				poster = 'node/no-poster.jpg'
+				poster = 'app/no-poster.jpg'
 			}
 			let note =''
 			let i = 0
