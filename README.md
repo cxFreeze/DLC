@@ -3,7 +3,7 @@ http://148.60.11.217:80
 
 Architecture :
 - BDD : MySQL
-- Front : HTML CSS Jquery
+- Front : HTML CSS jQuery
 - Back : NodeJS
 - Load balancer : Nginx
 - Intégration continue : Jenkins
