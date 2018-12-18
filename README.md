@@ -1,5 +1,5 @@
 # DLC
-http://148.60.11.217/app
+http://148.60.11.217
 
 Architecture :
 - BDD : MySQL
