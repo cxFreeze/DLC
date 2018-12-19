@@ -22,3 +22,5 @@ NAGIOS :
 http://148.60.11.217/nagios3
 
 nagiosadmin:aqwzsx
+
+test
