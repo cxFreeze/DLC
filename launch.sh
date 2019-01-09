@@ -7,7 +7,7 @@ counter=0
 while [ $counter -lt $1 ]
 do
 	docker run --cpus="0.2" --memory="100m" -p 800$counter:8000 -d dlc/projet
-	(($counter++))
+	((counter++))
 done
 
 npm test
