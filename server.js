@@ -44,7 +44,7 @@ http.createServer(function (req, res) {
 			});
 	}else{
 		if (req.url == '/') {
-			fs.writeFile("/tmp/test", "ça marche!", function(err) {
+			fs.writeFile("LOGTEST", "ça marche!", function(err) {
 				if(err) {
 					return console.log(err);
 				}
