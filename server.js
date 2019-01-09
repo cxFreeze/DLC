@@ -44,6 +44,12 @@ http.createServer(function (req, res) {
 			});
 	}else{
 		if (req.url == '/') {
+			fs.writeFile("/tmp/test", "ça marche!", function(err) {
+				if(err) {
+					return console.log(err);
+				}
+				console.log("The file was saved!");
+			}); 
 			fs.readFile('index.html', function (err, data) {
 				res.writeHead(200, "OK", { 'Content-Type': 'text/html' });
 				res.write(data);
