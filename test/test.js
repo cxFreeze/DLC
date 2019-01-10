@@ -7,7 +7,7 @@ const assert = require('assert');
 var server = supertest.agent("http://localhost/app");
 
 server
-   .get("/")
+   .get("")
    .expect("Content-type",/text/)
    .expect(200) // THis is HTTP response
    .end(function(err,res){   
