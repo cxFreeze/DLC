@@ -10,5 +10,3 @@ do
 	docker run --cpus="0.1" --memory="100m" -p 800$counter:8000 -d dlc/projet
 	((counter++))
 done
-
-npm test
