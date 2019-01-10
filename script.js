@@ -15,7 +15,11 @@ function search(){
 			for (; i<5;i++){
 				note+="<span class='fa fa-star'></span>"
 			}
-			$('#movietable').append("<tr class='movie'><td><img style='height:150px' src='"+poster+"'></td><td>"+data[movie].originalTitle+"</td><td>"+data[movie].startYear+"</td><td>"+data[movie].genres.replace(/,/g, ", ")+"</td><td></td><td>"+note+"</td></tr>")		
+			let genre = ""
+			if (data[movie].genres){
+				genre = data[movie].genres.replace(/,/g, ", ")
+			}		
+			$('#movietable').append("<tr class='movie'><td><img style='height:150px' src='"+poster+"'></td><td>"+data[movie].originalTitle+"</td><td>"+data[movie].startYear+"</td><td>"+genre+"</td><td></td><td>"+note+"</td></tr>")		
 		}			
 	}).fail(function(){ 
 		console.log('something went wrong please try again');
