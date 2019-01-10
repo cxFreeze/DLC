@@ -12,6 +12,7 @@ const connection = mysql.createConnection({
 connection.connect();
 
 http.createServer(function (req, res) {
+	req.url = req.url.replace("/app","");
 	if(req.method === "POST"){
 		var body = "";
 			req.on("data", function (data) {
@@ -43,7 +44,7 @@ http.createServer(function (req, res) {
 				}
 			});
 	}else{
-		if (req.url == '/') {
+		if (req.url == '') {
 			fs.writeFile("LOGTEST", "ça marche!", function(err) {
 				if(err) {
 					return console.log(err);
