@@ -12,18 +12,6 @@ const connection = mysql.createPool({
   debug    :  false
 });
 
-async function getPoster(movie) {
-	return new Promise((resolve,reject) => {
-		https.get("https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=" + movie + "&callback=?", (json) => {
-			if (!json.result || !json.results[0] || json.results[0].poster_path==null) {
-				resolve('app/no-poster.jpg')	
-				return
-			}
-			resolve('http://image.tmdb.org/t/p/w500/' + json.results[0].poster_path)				
-		})
-	})
-}
-
 http.createServer(function (req, res) {
 	req.url = req.url.replace("/app","");
 	if(req.method === "POST"){
@@ -40,9 +28,6 @@ http.createServer(function (req, res) {
 								res.writeHead(500, "Internal Server Error", {"Content-Type": "text/plain"});
 								res.end();
 							}else{
-								for (i in results){
-									await getPoster(results[i])
-								}
 								res.writeHead(200, "OK", {"Content-Type": "application/json"});
 								res.write(JSON.stringify(results));
 								res.end();								

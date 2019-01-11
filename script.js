@@ -2,12 +2,10 @@ function search(){
 	$.post("app/searchMovie", JSON.stringify({movie: $("#searchMovie").val()}), function (data, status) {
 		$('#movietable').empty()
 		for (let movie in data) {
-			/*
 			let poster = await getImage(data[movie].originalTitle)
 			if (poster == ''){
 				poster = 'app/no-poster.jpg'
 			}
-			*/
 			let note =''
 			let i = 0
 			for (; i<(Math.round(data[movie].averageRating))/2;i++){
@@ -20,7 +18,7 @@ function search(){
 			if (data[movie].genres){
 				genre = data[movie].genres.replace(/,/g, ", ")
 			}		
-			$('#movietable').append("<tr class='movie'><td><img style='height:150px' src='"+data[movie].poster+"'></td><td>"+data[movie].originalTitle+"</td><td>"+data[movie].startYear+"</td><td>"+genre+"</td><td></td><td>"+note+"</td></tr>")		
+			$('#movietable').append("<tr class='movie'><td><img style='height:150px' src='"+poster+"'></td><td>"+data[movie].originalTitle+"</td><td>"+data[movie].startYear+"</td><td>"+genre+"</td><td></td><td>"+note+"</td></tr>")		
 		}			
 	}).fail(function(){ 
 		console.log('something went wrong please try again');
