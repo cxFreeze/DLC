@@ -13,13 +13,14 @@ const connection = mysql.createPool({
 });
 
 function getPoster(movieName) {
+	var poster = "";
 	https.get("https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=" + movieName + "&callback=?", (json) => {
-		console.log("JSON =" + movieName + json);
 		if (!json.results || !json.results[0] || !json.results[0].poster_path || !json.results[0].poster_path==null) {
-			return 'app/no-poster.jpg';
+			poster = 'app/no-poster.jpg';
 		}
-		return 'http://image.tmdb.org/t/p/w500/' + json.results[0].poster_path;
+		poster = 'http://image.tmdb.org/t/p/w500/' + json.results[0].poster_path;
 	})
+	return poster
 }
 
 http.createServer(function (req, res) {
@@ -39,7 +40,6 @@ http.createServer(function (req, res) {
 								res.end();
 							}else{
 								for (i in results){
-									console.log(results[i])
 									results[i].poster = await getPoster(results[i].originalTitle)
 								}
 								res.writeHead(200, "OK", {"Content-Type": "application/json"});
