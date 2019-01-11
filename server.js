@@ -16,7 +16,7 @@ async function getPoster(movie) {
 	return new Promise((resolve,reject) => {
 		https.get("https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=" + movie + "&callback=?", (json) => {
 			if (!json.results[0] || json.results[0].poster_path==null) {
-				resolve(''app/no-poster.jpg'')	
+				resolve('app/no-poster.jpg')	
 				return
 			}
 			resolve('http://image.tmdb.org/t/p/w500/' + json.results[0].poster_path)				
