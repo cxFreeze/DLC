@@ -23,7 +23,7 @@ http.createServer(function (req, res) {
 				try{
 					const json = JSON.parse(body);
 					if(req.url === "/searchMovie"){
-						connection.query('SELECT * FROM `movies` WHERE `originalTitle` like ? ORDER BY `numVotes` DESC LIMIT 10', "%"+json['movie']+"%", (error, results, fields) => {
+						connection.query('SELECT * FROM `movies` WHERE `originalTitle` like ? ORDER BY CAST(`numVotes` AS UNSIGNED)  DESC LIMIT 10', "%"+json['movie']+"%", (error, results, fields) => {
 							if(error){
 								res.writeHead(500, error, {"Content-Type": "text/plain"});
 								res.end();
