@@ -19,4 +19,4 @@ admin:493dffbd6bd745d39180a4895cb30697
 
 cAdvisor : 
 
-http://148.60.11.217/cAdvisor
+http://148.60.11.217/cadvisor
