@@ -14,7 +14,7 @@ const connection = mysql.createPool({
 
 function getPoster(movieName) {
 	https.get("https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=" + movieName + "&callback=?", (json) => {
-		if (!json.results[0] || !json.results[0].poster_path) {
+		if (!json || !json.results[0] || !json.results[0].poster_path) {
 			return 'app/no-poster.jpg';
 		}
 		return 'http://image.tmdb.org/t/p/w500/' + json.results[0].poster_path;
@@ -37,6 +37,7 @@ http.createServer(function (req, res) {
 								res.writeHead(500, "Internal Server Error", {"Content-Type": "text/plain"});
 								res.end();
 							}else{
+								console.log(results)
 								for (i in results){
 									results[i].poster = await getPoster(results[i].originalTitle)
 								}
