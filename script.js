@@ -1,5 +1,5 @@
 function search(){
-	$.post("app/searchMovie", JSON.stringify({movie: $("#searchMovie").val()}), function (data, status) {
+	$.post("app/searchMovie", JSON.stringify({movie: $("#searchMovie").val()}), async function (data, status) {
 		$('#movietable').empty()
 		for (let movie in data) {
 			let poster = await getImage(data[movie].originalTitle)
