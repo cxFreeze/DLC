@@ -12,6 +12,15 @@ const connection = mysql.createPool({
   debug    :  false
 });
 
+function getPoster(movieName) {
+	https.get("https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=" + movieName + "&callback=?", (json) => {
+		if (!json.results[0] || json.results[0].poster_path==null) {
+			return 'app/no-poster.jpg';
+		}
+		return 'http://image.tmdb.org/t/p/w500/' + json.results[0].poster_path;
+	})
+}
+
 http.createServer(function (req, res) {
 	req.url = req.url.replace("/app","");
 	if(req.method === "POST"){
@@ -78,12 +87,3 @@ http.createServer(function (req, res) {
 		}
 	}
 }).listen(8000);
-
-function getImage(movieName) {
-	https.get("https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=" + movieName + "&callback=?", (json) => {
-		if (!json.results[0] || json.results[0].poster_path==null) {
-			return 'app/no-poster.jpg';
-		}
-		return 'http://image.tmdb.org/t/p/w500/' + json.results[0].poster_path;
-	})
-}
