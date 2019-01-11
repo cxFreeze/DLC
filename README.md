@@ -17,10 +17,6 @@ http://148.60.11.217/jenkins
 
 admin:493dffbd6bd745d39180a4895cb30697
 
-NAGIOS : 
+cAdvisor : 
 
-http://148.60.11.217/nagios3
-
-nagiosadmin:aqwzsx
-
-test3
+http://148.60.11.217/cadvisor
