@@ -1,4 +1,5 @@
 const	http = require('http'),
+		https = require('https'),
 		mysql = require('mysql'),
 		fs = require('fs');
 
@@ -22,11 +23,14 @@ http.createServer(function (req, res) {
 				try{
 					const json = JSON.parse(body);
 					if(req.url === "/searchMovie"){
-						connection.query('SELECT * FROM `movies` WHERE `originalTitle` like ? LIMIT 10', "%"+json['movie']+"%", function (error, results, fields) {
+						connection.query('SELECT * FROM `movies` WHERE `originalTitle` like ? LIMIT 10', "%"+json['movie']+"%", (error, results, fields) => {
 							if(error){
 								res.writeHead(500, "Internal Server Error", {"Content-Type": "text/plain"});
 								res.end();
 							}else{
+								for (film of results){
+									film.poster = getPoster()
+								}
 								res.writeHead(200, "OK", {"Content-Type": "application/json"});
 								res.write(JSON.stringify(results));
 								res.end();								
@@ -75,3 +79,11 @@ http.createServer(function (req, res) {
 	}
 }).listen(8000);
 
+function getImage(movieName) {
+	https.get("https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=" + movieName + "&callback=?", (json) => {
+		if (!json.results[0] || json.results[0].poster_path==null) {
+			return 'app/no-poster.jpg';
+		}
+		return 'http://image.tmdb.org/t/p/w500/' + json.results[0].poster_path;
+	})
+}
