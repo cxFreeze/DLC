@@ -32,13 +32,13 @@ http.createServer(function (req, res) {
 				try{
 					const json = JSON.parse(body);
 					if(req.url === "/searchMovie"){
-						connection.query('SELECT * FROM `movies` WHERE `originalTitle` like ? LIMIT 10', "%"+json['movie']+"%", (error, results, fields) => {
+						connection.query('SELECT * FROM `movies` WHERE `originalTitle` like ? LIMIT 10', "%"+json['movie']+"%", async (error, results, fields) => {
 							if(error){
 								res.writeHead(500, "Internal Server Error", {"Content-Type": "text/plain"});
 								res.end();
 							}else{
 								for (i in results){
-									results[i].poster = getPoster(results[i].originalTitle)
+									results[i].poster = await getPoster(results[i].originalTitle)
 								}
 								res.writeHead(200, "OK", {"Content-Type": "application/json"});
 								res.write(JSON.stringify(results));
