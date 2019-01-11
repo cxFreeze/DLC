@@ -11,7 +11,6 @@ server
    .expect("Content-type",/text/)
    .expect(200) // THis is HTTP response
    .end(function(err,res){
-	  console.log(res)
       assert.strictEqual(null,err);
 });
 
@@ -21,6 +20,5 @@ server
    .expect("Content-type",/json/)
    .expect(200) // THis is HTTP response
    .end(function(err,res){
-	  console.log(res)
       assert.strictEqual(null,err);
 });
