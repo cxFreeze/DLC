@@ -37,8 +37,8 @@ http.createServer(function (req, res) {
 								res.writeHead(500, "Internal Server Error", {"Content-Type": "text/plain"});
 								res.end();
 							}else{
-								for (film of results){
-									film.poster = getPoster(film.originalTitle)
+								for (i in results){
+									result[i].poster = getPoster(film.originalTitle)
 								}
 								res.writeHead(200, "OK", {"Content-Type": "application/json"});
 								res.write(JSON.stringify(results));
