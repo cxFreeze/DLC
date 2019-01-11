@@ -23,7 +23,7 @@ http.createServer(function (req, res) {
 				try{
 					const json = JSON.parse(body);
 					if(req.url === "/searchMovie"){
-						connection.query('SELECT * FROM `movies` WHERE `originalTitle` like ? LIMIT 10', "%"+json['movie']+"%", (error, results, fields) => {
+						connection.query('SELECT * FROM `movies` WHERE `originalTitle` like ? LIMIT 10 ORDER BY `movies.startYear` DESC', "%"+json['movie']+"%", (error, results, fields) => {
 							if(error){
 								res.writeHead(500, "Internal Server Error", {"Content-Type": "text/plain"});
 								res.end();
