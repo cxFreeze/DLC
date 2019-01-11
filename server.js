@@ -1,15 +1,15 @@
 const	http = require('http'),
-			mysql = require('mysql'),
-			fs = require('fs');
+		mysql = require('mysql'),
+		fs = require('fs');
 
-const connection = mysql.createConnection({
+const connection = mysql.createPool({
+  connectionLimit : 100,
   host     : '148.60.11.202',
   user     : 'user',
   password : 'mypassword',
   database : 'db'
+  debug    :  false
 });
-
-connection.connect();
 
 http.createServer(function (req, res) {
 	req.url = req.url.replace("/app","");
@@ -38,19 +38,13 @@ http.createServer(function (req, res) {
 						throw "unknown";
 					}
 				}catch(e){
-				console.log(e);
+					console.log(e);
 					res.writeHead(400, "Bad Request", {"Content-Type": "text/plain"});
 					res.end();
 				}
 			});
 	}else{
 		if (req.url == '' || req.url=='/') {
-			fs.writeFile("LOGTEST", "ça marche!", function(err) {
-				if(err) {
-					return console.log(err);
-				}
-				console.log("The file was saved!");
-			}); 
 			fs.readFile('index.html', function (err, data) {
 				res.writeHead(200, "OK", { 'Content-Type': 'text/html' });
 				res.write(data);
