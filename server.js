@@ -38,7 +38,7 @@ http.createServer(function (req, res) {
 								res.end();
 							}else{
 								for (i in results){
-									results[i].poster = getPoster(film.originalTitle)
+									results[i].poster = getPoster(results[i].originalTitle)
 								}
 								res.writeHead(200, "OK", {"Content-Type": "application/json"});
 								res.write(JSON.stringify(results));
