@@ -10,7 +10,8 @@ server
    .get("")
    .expect("Content-type",/text/)
    .expect(200) // THis is HTTP response
-   .end(function(err,res){   
+   .end(function(err,res){
+	  console.log(res)
       assert.strictEqual(null,err);
 });
 
@@ -19,6 +20,7 @@ server
    .send({"movie": "star wars"})
    .expect("Content-type",/json/)
    .expect(200) // THis is HTTP response
-   .end(function(err,res){   
+   .end(function(err,res){
+	  console.log(res)
       assert.strictEqual(null,err);
 });
