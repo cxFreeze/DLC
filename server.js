@@ -17,6 +17,7 @@ function getPoster(movieName) {
 	https.get("https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=" + movieName + "&callback=?", (json) => {
 		if (!json.results || !json.results[0] || !json.results[0].poster_path || !json.results[0].poster_path==null) {
 			poster = 'app/no-poster.jpg';
+			return
 		}
 		poster = 'http://image.tmdb.org/t/p/w500/' + json.results[0].poster_path;
 	})
