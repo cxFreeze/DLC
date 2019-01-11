@@ -20,10 +20,8 @@ async function getPoster(movie) {
 				return
 			}
 			resolve('http://image.tmdb.org/t/p/w500/' + json.results[0].poster_path)				
-			}).fail(function(){ 
-				resolve('app/no-poster.jpg');
-			});	
-		})
+		}
+	})
 }
 
 http.createServer(function (req, res) {
