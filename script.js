@@ -1,3 +1,4 @@
+search()
 function search(){
 	$.post("app/searchMovie", JSON.stringify({movie: $("#searchMovie").val()}), async function (data, status) {
 		$('#movietable').empty()
