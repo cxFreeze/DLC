@@ -34,6 +34,7 @@ http.createServer(function (req, res) {
 								res.end();								
 							}
 						});
+					}
 				}catch(e){
 					console.log(e);
 					res.writeHead(400, "Bad Request", {"Content-Type": "text/plain"});
