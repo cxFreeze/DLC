@@ -1,9 +1,14 @@
 search()
+$('#searchbar').on('keypress',function(e) {
+    if(e.which == 13) {
+        search();
+    }
+});
 function search(){
 	$.post("app/searchMovie", JSON.stringify({movie: $("#searchMovie").val()}), async function (data, status) {
 		$('#movietable').empty()
 		let res = ""
-		$('#movietable').append("<tr><td colspan='6'><img src='http://www.legoffetgabarra.fr/style-site/img/loadingBar.gif'></td></tr>");
+		$('#movietable').append("<tr><td colspan='6'><img style='height:350px' src='app/spinner.svg'></td></tr>");
 		for (let movie in data) {
 			let poster = await getImage(data[movie].originalTitle)
 			if (poster == ''){
@@ -22,7 +27,6 @@ function search(){
 				genre = data[movie].genres.replace(/,/g, ", ")
 			}
 			res+= "<tr class='movie'><td><img style='height:150px' src='"+poster+"'></td><td>"+data[movie].originalTitle+"</td><td>"+data[movie].startYear+"</td><td>"+genre+"</td><td></td><td>"+note+"</td></tr>"
-			// $('#movietable').append("<tr class='movie'><td><img style='height:150px' src='"+poster+"'></td><td>"+data[movie].originalTitle+"</td><td>"+data[movie].startYear+"</td><td>"+genre+"</td><td></td><td>"+note+"</td></tr>")		
 		}
 		$('#movietable').empty()
 		$('#movietable').append(res);
@@ -43,5 +47,4 @@ function getImage(film){
 					resolve('');
 				});	
 			})
-
 }

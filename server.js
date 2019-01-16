@@ -23,7 +23,8 @@ http.createServer(function (req, res) {
 				try{
 					const json = JSON.parse(body);
 					if(req.url === "/searchMovie"){
-						connection.query('SELECT * FROM `movies` WHERE `originalTitle` like ? ORDER BY CAST(`numVotes` AS UNSIGNED)  DESC LIMIT 10', "%"+json['movie']+"%", (error, results, fields) => {
+						connection.query('SELECT * FROM `movies` WHERE `originalTitle` like ? ORDER BY CAST(`numVotes` AS UNSIGNED)  DESC LIMIT 10', "%"+json['movie']+"%", 
+						(error, results, fields) => {
 							if(error){
 								res.writeHead(500, error, {"Content-Type": "text/plain"});
 								res.end();
@@ -33,11 +34,6 @@ http.createServer(function (req, res) {
 								res.end();								
 							}
 						});
-					}else if(req.url === "/searchPerson"){
-						throw "unknown";
-					}else{
-						throw "unknown";
-					}
 				}catch(e){
 					console.log(e);
 					res.writeHead(400, "Bad Request", {"Content-Type": "text/plain"});
@@ -66,6 +62,12 @@ http.createServer(function (req, res) {
 		} else if (req.url == '/no-poster.jpg') {
 			fs.readFile('no-poster.jpg', function (err, data) {
 				res.writeHead(200, "OK", { 'Content-Type': 'image/jpeg' });
+				res.write(data);
+				res.end();
+			});
+		} else if (req.url == '/spinner.svg') {
+			fs.readFile('spinner.svg', function (err, data) {
+				res.writeHead(200, "OK", { 'Content-Type': 'image/svg+xml' });
 				res.write(data);
 				res.end();
 			});

@@ -6,6 +6,10 @@ body{
  min-width:1300px;
 }
 
+table{
+	border: none !important;
+}
+
 td{
 	vertical-align:middle !important;
 }
@@ -33,5 +37,5 @@ td{
 #searchMovie{
 	height:40px;
 	width:450px;
-	padding:0;
+	padding:7px;
 }
