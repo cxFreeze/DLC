@@ -23,7 +23,7 @@ http.createServer(function (req, res) {
 				try{
 					const json = JSON.parse(body);
 					if(req.url === "/searchMovie"){
-						connection.query('SELECT * FROM `movies` WHERE `originalTitle` like ? ORDER BY CAST(`numVotes` AS UNSIGNED)  DESC LIMIT 10', "%"+json['movie']+"%", 
+						connection.query('SELECT originalTitle, startYear, averageRating, genres, GROUP_CONCAT( `primaryName` ) AS cast FROM (SELECT * FROM movies WHERE `originalTitle` like ? ORDER BY CAST(`numVotes` AS UNSIGNED) DESC LIMIT 10) AS movies LEFT JOIN `principals` ON movies.tconst=principals.tconst LEFT JOIN `persons` ON principals.nconst=persons.nconst WHERE characters !="" OR characters = NULL GROUP BY movies.tconst ORDER BY CAST(`numVotes` AS UNSIGNED) DESC', "%"+json['movie']+"%", 
 						(error, results, fields) => {
 							if(error){
 								res.writeHead(500, error, {"Content-Type": "text/plain"});

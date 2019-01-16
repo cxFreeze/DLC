@@ -12,6 +12,8 @@ table{
 
 td{
 	vertical-align:middle !important;
+	min-width:50px;
+	max-width:250px;
 }
 
 .topbar{

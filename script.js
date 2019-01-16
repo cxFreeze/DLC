@@ -5,10 +5,10 @@ $('#searchbar').on('keypress',function(e) {
     }
 });
 function search(){
+	$('#movietable').empty()
+	let res = ""
+	$('#movietable').append("<tr><td colspan='6'><img style='height:350px' src='app/spinner.svg'></td></tr>");
 	$.post("app/searchMovie", JSON.stringify({movie: $("#searchMovie").val()}), async function (data, status) {
-		$('#movietable').empty()
-		let res = ""
-		$('#movietable').append("<tr><td colspan='6'><img style='height:350px' src='app/spinner.svg'></td></tr>");
 		for (let movie in data) {
 			let poster = await getImage(data[movie].originalTitle)
 			if (poster == ''){
@@ -26,10 +26,17 @@ function search(){
 			if (data[movie].genres){
 				genre = data[movie].genres.replace(/,/g, ", ")
 			}
-			res+= "<tr class='movie'><td><img style='height:150px' src='"+poster+"'></td><td>"+data[movie].originalTitle+"</td><td>"+data[movie].startYear+"</td><td>"+genre+"</td><td></td><td>"+note+"</td></tr>"
+			let cast = ""
+			if (data[movie].cast){
+				cast = data[movie].cast.replace(/,/g, ", ")
+			}
+			res+= "<tr class='movie'><td><img style='height:150px' src='"+poster+"'></td><td>"+data[movie].originalTitle+"</td><td>"+data[movie].startYear+"</td><td>"+genre+"</td><td>"+cast+"</td><td>"+note+"</td></tr>"
 		}
 		$('#movietable').empty()
 		$('#movietable').append(res);
+		if (res == ""){
+			$('#movietable').append("<tr><td colspan='6'><h1>NO RESULTS</h1></td></tr>");
+		} 
 	}).fail(function(){ 
 		console.log('something went wrong please try again');
 	});
