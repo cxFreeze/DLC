@@ -67,7 +67,8 @@ td{
   white-space:nowrap;
   padding:17px !important;
   padding-right:40px !important;
-  max-width:800px !important;
+  min-width:500px !important;
+  max-width:80% !important;
   width:auto  !important;
 }
 

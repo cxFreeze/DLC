@@ -37,7 +37,7 @@ function search(){
 					cast+= "<a class='text-hover' onclick='openActor(`"+tmp[0]+"`)'>"+tmp[1]+"</a>"
 				}
 			}
-			res+= "<tr class='movie'><td><img style='height:125px' src='"+poster+"'></td><td>"+data[movie].originalTitle+" ("+data[movie].startYear+")</td><td>"+data[movie].runtimeMinutes+" min.</td><td>"+genre+"</td><td>"+cast+"</td><td>"+note+"</td></tr>"
+			res+= "<tr class='movie'><td><img style='height:125px' src='"+poster+"'></td><td><span class='text-hover' onclick='openMovie(`"+data[movie].tconst+"`)'>"+data[movie].originalTitle+" ("+data[movie].startYear+")</td><td>"+data[movie].runtimeMinutes+" min.</td><td>"+genre+"</td><td>"+cast+"</td><td>"+note+"</td></tr>"
 		}
 		$('#movietable').empty()
 		$('#movietable').append(res);
@@ -87,5 +87,16 @@ function openActor(person){
 			knownFor += "<div style='font-size:17px' class='text-hover'>"+movie.originalTitle+" </div>"
 		}
 		$("<div class='modal-cont'><div class='movie-modal'><div class='modal-left'><img style='width:180px;' src='"+image+"'></div><div class='modal-right'><h2>"+data[0].primaryName+"</h2><div>"+data[0].birthYear+" - "+data[0].deathYear+"</div><div>"+data[0].primaryProfession+"</div><div style='margin:15px 0 7px 0;'>Known for:</div><div>"+knownFor+"</div></div></div></div>").appendTo('body').modal({fadeDuration: 100});
+	})
+}
+
+function openMovie(movie){
+	$.post("app/getMovieDetails", JSON.stringify({movie: movie}), async function (data, status) {
+		let image = await getMoviePoster(data[0].tconst)
+		persons = "";
+		for (person of data){
+		persons += "<div><span style='font-size:17px'><b class='text-hover'>"+person.primaryName+" </b></span><span style='font-size:17px'>"+person.job+" </span><span style='font-size:17px'>"+person.characters.split('["').join("").split('"]').join("");+"</span></div>"
+		}
+		$("<div class='modal-cont'><div class='movie-modal'><div class='modal-left'><img style='width:180px;' src='"+image+"'></div><div class='modal-right'><h2>"+data[0].originalTitle+"</h2><div>"+data[0].startYear+"</div><div style='margin:15px 0 7px 0;'>Cast:</div><div>"+persons+"</div></div></div></div></div>").appendTo('body').modal({fadeDuration: 100});
 	})
 }

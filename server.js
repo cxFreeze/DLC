@@ -37,7 +37,7 @@ http.createServer(function (req, res) {
 							});
 						}
 						else if(req.url === "/getMovieDetails"){
-							connection.query('SELECT persons.* FROM persons WHERE nconst=?', json['movie'],
+							connection.query('SELECT movies.*, `primaryName`, `job`, `characters` FROM (SELECT * FROM movies WHERE `tconst` = ?) AS movies LEFT JOIN `principals` ON movies.tconst=principals.tconst LEFT JOIN `persons` ON principals.nconst=persons.nconst', json['movie'], 
 							(error, results, fields) => {
 								if(error){
 									res.writeHead(500, error, {"Content-Type": "text/plain"});
