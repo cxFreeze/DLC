@@ -30,7 +30,7 @@ function search(){
 			if (data[movie].cast){
 				cast = data[movie].cast.replace(/,/g, ", ")
 			}
-			res+= "<tr class='movie'><td><img style='height:150px' src='"+poster+"'></td><td>"+data[movie].originalTitle+"</td><td>"+data[movie].startYear+"</td><td>"+genre+"</td><td>"+cast+"</td><td>"+note+"</td></tr>"
+			res+= "<tr class='movie'><td><img style='height:125px' src='"+poster+"'></td><td>"+data[movie].originalTitle+"</td><td>"+data[movie].startYear+"</td><td>"+genre+"</td><td>"+cast+"</td><td>"+note+"</td></tr>"
 		}
 		$('#movietable').empty()
 		$('#movietable').append(res);

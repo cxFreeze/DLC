@@ -66,6 +66,12 @@ http.createServer(function (req, res) {
 				res.write(data);
 				res.end();
 			});
+		} else if (req.url == '/logo.png') {
+			fs.readFile('logo.png', function (err, data) {
+				res.writeHead(200, "OK", { 'Content-Type': 'image/png' });
+				res.write(data);
+				res.end();
+			});
 		} else if (req.url == '/spinner.svg') {
 			fs.readFile('spinner.svg', function (err, data) {
 				res.writeHead(200, "OK", { 'Content-Type': 'image/svg+xml' });

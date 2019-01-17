@@ -8,31 +8,34 @@
 </head>
 
 <body>
-	<div class="topbar">
-		<span><h2>PROJET DLC</h2></span>
-		<span class="searchbar" id="searchbar">
-			<input id="searchMovie" type="text" placeholder="chercher un film">
-			<button class="searchbutton" onclick="search()"><i class="fa fa-search"></i></button>
-		</span>
+	<div class="page">
+		<div class="topbar">
+			<img style="height:50px; margin-right:8px;" src="app/logo.png">
+			<span><h2 class="title">PROJET DLC</h2></span>
+			<span class="searchbar" id="searchbar">
+				<input id="searchMovie" type="text" placeholder="find a movie">
+				<button class="searchbutton" onclick="search()"><i class="fa fa-search"></i></button>
+			</span>
 
+		</div>
+		
+		<div class="w3-container w3-centered" style="padding:0 !important">
+		  <table class="w3-table-all">
+			<thead>
+			  <tr class="w3-black">
+				<th>Poster</th>
+				<th>Name</th>
+				<th>Year</th>
+				<th>Genres</th>
+				<th>Cast</th>
+				<th>Rating</th>
+			  </tr>
+			</thead>
+			<tbody id="movietable">
+			</tbody>
+		  </table>
+		</div>
 	</div>
-	<div class="w3-container w3-centered" style="padding:0 !important">
-	  <table class="w3-table-all">
-		<thead>
-		  <tr class="w3-black">
-			<th>Poster</th>
-			<th>Name</th>
-			<th>Year</th>
-			<th>Genres</th>
-			<th>Cast</th>
-			<th>Rating</th>
-		  </tr>
-		</thead>
-		<tbody id="movietable">
-		</tbody>
-	  </table>
-	</div>
-
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
