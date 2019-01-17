@@ -4,7 +4,7 @@
 
 h1,h2{
 	font-weight:600 !important;
-	font-family:"Trebuchet MS", Helvetica, sans-serif;
+	font-family:"Trebuchet MS", Helvetica, sans-serif !important;
 }
 
 body{
