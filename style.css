@@ -53,8 +53,38 @@ td{
 	width:40px;
 }
 
+.movie-modal{
+	display:flex;
+}
+
 #searchMovie{
 	height:40px;
 	width:400px;
 	padding:7px;
+}
+
+.modal-cont {
+  white-space:nowrap;
+  padding:13px !important;
+  padding-right:40px !important;
+  max-width:800px !important;
+  width:auto  !important;
+}
+
+.modal-left {
+  flex: 0 0 200px;
+}
+
+img {
+  border-radius:2%;
+}
+
+.text-hover:hover{
+	cursor:pointer;
+	color: blue;
+}
+
+.modal-right {
+  flex: 1;
+  font-size: 20px;
 }
