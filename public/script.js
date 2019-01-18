@@ -111,6 +111,7 @@ function openMovie(movie){
 		if (data[0] == undefined){
 			return
 		}
+		genre="";
 		if (data[0].genres){
 			genre = data[0].genres.replace(/,/g, ", ")
 		}
@@ -121,12 +122,26 @@ function openMovie(movie){
 		data[0].originalTitle = data[0].originalTitle || "";
 		data[0].originalTitle = data[0].originalTitle.substring(0,70);
 		for (person of data){
+			person.characters = person.characters || ""
 			persons += "<div><span style='font-size:17px'><b onclick='openActor(`"+person.nconst+"`)' class='text-hover'>"+person.primaryName+"</b></span><span style='font-size:17px;'> "+person.job+" </span><span style='font-size:17px; color:#398fd6'>"+person.characters.split('["').join("").split('"]').join("").split('"').join("").split(',').join(", ")+"</span></div>"
 		}
 		$("<div class='modal-cont'><div class='movie-modal'><div class='modal-left'><img style='width:180px; margin-top:22px' src='"+image+"'></div><div class='modal-right'><h2>"+data[0].originalTitle+"</h2><div>"+data[0].startYear+" - "+note+" - "+genre+"</div><div>"+data[0].runtimeMinutes+" min.</div><div style='margin:15px 0 7px 0;'>Cast:</div><div>"+persons+"</div></div></div></div></div>").appendTo('body').modal({fadeDuration: 100});
 	})
 }
 
+function openAddMovie(){
+	$("<div class='modal-cont'>\
+			<div>Name: <input id='title'></div>\
+			<div>Year:<input id='year'></div>\
+			<div>Note:<input id='note'></div>\
+			<div>Time:<input id='time'></div>\
+			<button onclick='addMovie()'>SEND</button</div>").appendTo('body').modal({fadeDuration: 100});
+}
+
 function addMovie(){
-	$("<div class='modal-cont'><div>Name: <input></div><div>Year:<input></div></div>").appendTo('body').modal({fadeDuration: 100});
+	$.post("addMovie", {title: $("#title").val(), year: $("#year").val(), note: number($("#note").val())*2, time: $("#time").val()}, function (data, status) {
+		console.log(data)
+	}).fail(function(){ 
+		console.log('something went wrong please try again');
+	});
 }
