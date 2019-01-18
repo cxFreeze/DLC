@@ -22,8 +22,8 @@ function createRating(rating){
 function search(){
 	$('#movietable').empty()
 	let res = ""
-	$('#movietable').append("<tr><td colspan='6'><img style='height:350px' src='app/spinner.svg'></td></tr>");
-	$.post("app/searchMovie", JSON.stringify({movie: $("#searchMovie").val()}), async function (data, status) {
+	$('#movietable').append("<tr><td colspan='6'><img style='height:350px' src='spinner.svg'></td></tr>");
+	$.post("searchMovie", {movie: $("#searchMovie").val()}, async function (data, status) {
 		for (let movie in data) {
 			let poster = await getMoviePoster(data[movie].tconst)
 			let note = createRating(data[movie].averageRating)
@@ -64,12 +64,12 @@ function getMoviePoster(film){
 					resolve('http://image.tmdb.org/t/p/w200/' + json.tv_results[0].poster_path)
 				}
 				if (!json.movie_results[0] || json.movie_results[0].poster_path==null) {
-					resolve('app/no-poster.jpg')	
+					resolve('no-poster.jpg')	
 					return
 				}
 				resolve('http://image.tmdb.org/t/p/w200/' + json.movie_results[0].poster_path)				
 				}).fail(function(){ 
-					resolve('app/no-poster.jpg');
+					resolve('no-poster.jpg');
 				});	
 			})
 }
@@ -78,18 +78,18 @@ function getPersonImage(person){
 		return new Promise((resolve,reject) => {
 			$.getJSON("https://api.themoviedb.org/3/find/"+person+"?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&external_source=imdb_id", (json) => {
 				if (!json.person_results[0] || json.person_results[0].profile_path==null) {
-					resolve('app/no-poster.jpg')	
+					resolve('no-poster.jpg')	
 					return
 				}
 				resolve('http://image.tmdb.org/t/p/w200/' + json.person_results[0].profile_path)				
 				}).fail(function(){ 
-					resolve('app/no-poster.jpg');
+					resolve('no-poster.jpg');
 				});	
 			})
 }
 
 function openActor(person){
-	$.post("app/getPersonDetails", JSON.stringify({person: person}), async function (data, status) {
+	$.post("getPersonDetails", {person: person}, async function (data, status) {
 		if (data[0] == undefined){
 			return
 		}
@@ -107,7 +107,7 @@ function openActor(person){
 }
 
 function openMovie(movie){
-	$.post("app/getMovieDetails", JSON.stringify({movie: movie}), async function (data, status) {
+	$.post("getMovieDetails", {movie: movie}, async function (data, status) {
 		if (data[0] == undefined){
 			return
 		}
