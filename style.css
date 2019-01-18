@@ -65,8 +65,8 @@ td{
 
 .modal-cont {
   white-space:nowrap;
-  padding:17px !important;
-  padding-right:40px !important;
+  padding:40px !important;
+  padding-right:70px !important;
   min-width:500px !important;
   max-width:80% !important;
   width:auto  !important;

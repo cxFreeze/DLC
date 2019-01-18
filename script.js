@@ -4,6 +4,19 @@ $('#searchbar').on('keypress',function(e) {
         search();
     }
 });
+
+function createRating(rating){
+	let note =''
+	let i = 0
+	for (; i<(Math.round(rating))/2;i++){
+		note+="<span class='fa fa-star checked'></span>"
+	}
+	for (; i<5;i++){
+		note+="<span class='fa fa-star'></span>"
+	}
+	return note
+}
+
 function search(){
 	$('#movietable').empty()
 	let res = ""
@@ -14,18 +27,12 @@ function search(){
 			if (poster == ''){
 				poster = 'app/no-poster.jpg'
 			}
-			let note =''
-			let i = 0
-			for (; i<(Math.round(data[movie].averageRating))/2;i++){
-				note+="<span class='fa fa-star checked'></span>"
-			}
-			for (; i<5;i++){
-				note+="<span class='fa fa-star'></span>"
-			}
+			let note = createRating(data[movie].averageRating)
 			let genre = ""
 			if (data[movie].genres){
 				genre = data[movie].genres.replace(/,/g, ", ")
 			}
+			data[movie].runtimeMinutes = data[0].runtimeMinutes || "?"
 			let cast = ""
 			if (data[movie].cast){
 				castTab = data[movie].cast.split(",")
@@ -52,6 +59,11 @@ function search(){
 function getMoviePoster(film){
 		return new Promise((resolve,reject) => {
 			$.getJSON("https://api.themoviedb.org/3/find/"+film+"?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&external_source=imdb_id", (json) => {
+				if (!json.tv_results[0] || json.tv_results[0].poster_path==null) {
+				}
+				else{
+					resolve('http://image.tmdb.org/t/p/w200/' + json.tv_results[0].poster_path)
+				}
 				if (!json.movie_results[0] || json.movie_results[0].poster_path==null) {
 					resolve('')	
 					return
@@ -79,12 +91,17 @@ function getPersonImage(person){
 
 function openActor(person){
 	$.post("app/getPersonDetails", JSON.stringify({person: person}), async function (data, status) {
+		if (data[0] == undefined){
+			return
+		}
 		let image = await getPersonImage(data[0].nconst)
+		data[0].birthYear = data[0].birthYear || "?"
 		data[0].deathYear = data[0].deathYear || "?"
 		data[0].primaryProfession = data[0].primaryProfession.replace(/,/g, ", ")
 		let knownFor = ""
 		for (movie of data[0].movieNames){
-			knownFor += "<div style='font-size:17px' class='text-hover'>"+movie.originalTitle+" </div>"
+			movie.originalTitle = movie.originalTitle.substring(0,30);
+			knownFor += "<div style='font-size:17px' onclick='openMovie(`"+movie.tconst+"`)' class='text-hover'>"+movie.originalTitle+" </div>"
 		}
 		$("<div class='modal-cont'><div class='movie-modal'><div class='modal-left'><img style='width:180px;' src='"+image+"'></div><div class='modal-right'><h2>"+data[0].primaryName+"</h2><div>"+data[0].birthYear+" - "+data[0].deathYear+"</div><div>"+data[0].primaryProfession+"</div><div style='margin:15px 0 7px 0;'>Known for:</div><div>"+knownFor+"</div></div></div></div>").appendTo('body').modal({fadeDuration: 100});
 	})
@@ -92,11 +109,21 @@ function openActor(person){
 
 function openMovie(movie){
 	$.post("app/getMovieDetails", JSON.stringify({movie: movie}), async function (data, status) {
+		if (data[0] == undefined){
+			return
+		}
+		if (data[0].genres){
+			genre = data[0].genres.replace(/,/g, ", ")
+		}
+		let note = createRating(data[0].averageRating)
 		let image = await getMoviePoster(data[0].tconst)
 		persons = "";
+		data[0].runtimeMinutes = data[0].runtimeMinutes || "?";
+		data[0].originalTitle = data[0].originalTitle || "";
+		data[0].originalTitle = data[0].originalTitle.substring(0,50);
 		for (person of data){
-		persons += "<div><span style='font-size:17px'><b class='text-hover'>"+person.primaryName+" </b></span><span style='font-size:17px'>"+person.job+" </span><span style='font-size:17px'>"+person.characters.split('["').join("").split('"]').join("");+"</span></div>"
+			persons += "<div><span style='font-size:17px'><b onclick='openActor(`"+person.nconst+"`)' class='text-hover'>"+person.primaryName+"</b></span><span style='font-size:17px;'> "+person.job+" </span><span style='font-size:17px; color:#398fd6'>"+person.characters.split('["').join("").split('"]').join("").split('"').join("").split(',').join(", ")+"</span></div>"
 		}
-		$("<div class='modal-cont'><div class='movie-modal'><div class='modal-left'><img style='width:180px;' src='"+image+"'></div><div class='modal-right'><h2>"+data[0].originalTitle+"</h2><div>"+data[0].startYear+"</div><div style='margin:15px 0 7px 0;'>Cast:</div><div>"+persons+"</div></div></div></div></div>").appendTo('body').modal({fadeDuration: 100});
+		$("<div class='modal-cont'><div class='movie-modal'><div class='modal-left'><img style='width:180px; margin-top:22px' src='"+image+"'></div><div class='modal-right'><h2>"+data[0].originalTitle+"</h2><div>"+data[0].startYear+" - "+note+" - "+genre+"</div><div>"+data[0].runtimeMinutes+" min.</div><div style='margin:15px 0 7px 0;'>Cast:</div><div>"+persons+"</div></div></div></div></div>").appendTo('body').modal({fadeDuration: 100});
 	})
 }
