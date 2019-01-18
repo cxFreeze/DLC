@@ -6,6 +6,8 @@ const assert = require('assert');
 
 var server = supertest.agent("http://localhost/app");
 
+
+// Requete get
 server
    .get("")
    .expect("Content-type",/text/)
@@ -16,12 +18,22 @@ server
 
 server
    .get("/nimportequoi")
-   .expect("Content-type",/plain/)
+   .expect("Content-type",/text/)
    .expect(400) // THis is HTTP response
    .end(function(err,res){
       assert.strictEqual(null,err);
 });
 
+server
+   .get("/style.css")
+   .expect("Content-type",/text/)
+   .expect(200) // THis is HTTP response
+   .end(function(err,res){
+      assert.strictEqual(null,err);
+});
+
+
+// Requete Post
 server
    .post("/searchMovie")
    .send({"movie": "star wars"})
