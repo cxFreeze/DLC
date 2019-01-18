@@ -100,7 +100,7 @@ function openActor(person){
 		data[0].primaryProfession = data[0].primaryProfession.replace(/,/g, ", ")
 		let knownFor = ""
 		for (movie of data[0].movieNames){
-			movie.originalTitle = movie.originalTitle.substring(0,30);
+			movie.originalTitle = movie.originalTitle.substring(0,50);
 			knownFor += "<div style='font-size:17px' onclick='openMovie(`"+movie.tconst+"`)' class='text-hover'>"+movie.originalTitle+" </div>"
 		}
 		$("<div class='modal-cont'><div class='movie-modal'><div class='modal-left'><img style='width:180px;' src='"+image+"'></div><div class='modal-right'><h2>"+data[0].primaryName+"</h2><div>"+data[0].birthYear+" - "+data[0].deathYear+"</div><div>"+data[0].primaryProfession+"</div><div style='margin:15px 0 7px 0;'>Known for:</div><div>"+knownFor+"</div></div></div></div>").appendTo('body').modal({fadeDuration: 100});
