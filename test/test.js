@@ -15,13 +15,21 @@ server
 });
 
 server
+   .get("/nimportequoi")
+   .expect("Content-type",/plain/)
+   .expect(400) // THis is HTTP response
+   .end(function(err,res){
+      assert.strictEqual(null,err);
+});
+
+server
    .post("/searchMovie")
    .send({"movie": "star wars"})
    .expect("Content-type",/json/)
    .expect(200) // THis is HTTP response
    .end(function(err,res){
       assert.strictEqual(null,err);
-})
+});
 
 server
    .post("/getMovieDetails")
@@ -30,7 +38,7 @@ server
    .expect(200) // THis is HTTP response
    .end(function(err,res){
       assert.strictEqual(null,err);
-})
+});
 
 server
    .post("/getPersonDetails")
