@@ -24,9 +24,6 @@ function search(){
 	$.post("app/searchMovie", JSON.stringify({movie: $("#searchMovie").val()}), async function (data, status) {
 		for (let movie in data) {
 			let poster = await getMoviePoster(data[movie].tconst)
-			if (poster == ''){
-				poster = 'app/no-poster.jpg'
-			}
 			let note = createRating(data[movie].averageRating)
 			let genre = ""
 			if (data[movie].genres){
@@ -65,12 +62,12 @@ function getMoviePoster(film){
 					resolve('http://image.tmdb.org/t/p/w200/' + json.tv_results[0].poster_path)
 				}
 				if (!json.movie_results[0] || json.movie_results[0].poster_path==null) {
-					resolve('')	
+					resolve('app/no-poster.jpg')	
 					return
 				}
 				resolve('http://image.tmdb.org/t/p/w200/' + json.movie_results[0].poster_path)				
 				}).fail(function(){ 
-					resolve('');
+					resolve('app/no-poster.jpg');
 				});	
 			})
 }
