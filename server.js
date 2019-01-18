@@ -13,8 +13,6 @@ const connection = mysql.createPool({
   debug    :  false
 });
 
-
-
 const app = express()
 
 var bodyParser = require('body-parser')
@@ -29,13 +27,8 @@ app.post('/app/searchMovie', function (req, res) {
 	const json = req.body;
 	connection.query('SELECT movies.*, GROUP_CONCAT(CONCAT(persons.nconst, "$", `primaryName`) ) AS cast FROM (SELECT * FROM movies WHERE `originalTitle` like ? ORDER BY CAST(`numVotes` AS UNSIGNED) DESC LIMIT 10) AS movies LEFT JOIN `principals` ON movies.tconst=principals.tconst LEFT JOIN `persons` ON principals.nconst=persons.nconst WHERE characters !="" OR characters IS NULL GROUP BY movies.tconst ORDER BY CAST(`numVotes` AS UNSIGNED) DESC', "%"+json['movie']+"%", 
 	(error, results, fields) => {
-		if(error){
-			res.sendStatus(500);
-			res.end();
-		}else{
-			res.json(results);
-			res.end();								
-		}
+		error ? res.sendStatus(500) : res.json(results);
+		res.end();								
 	});
 })
 
@@ -43,13 +36,8 @@ app.post('/app/getMovieDetails', function (req, res) {
 	const json = req.body;
 	connection.query('SELECT movies.*, persons.nconst, `primaryName`, `job`, `characters` FROM (SELECT * FROM movies WHERE `tconst` = ?) AS movies LEFT JOIN `principals` ON movies.tconst=principals.tconst LEFT JOIN `persons` ON principals.nconst=persons.nconst', json['movie'], 
 	(error, results, fields) => {
-		if(error){
-			res.sendStatus(500);
-			res.end();
-		}else{
-			res.json(results);
-			res.end();								
-		}
+		error ? res.sendStatus(500) : res.json(results);
+		res.end();
 	});
 })
 
