@@ -32,8 +32,25 @@ server
       assert.strictEqual(null,err);
 });
 
+server
+   .get("/script.js")
+   .expect("Content-type",/text/)
+   .expect(200) // THis is HTTP response
+   .end(function(err,res){
+      assert.strictEqual(null,err);
+});
+
 
 // Requete Post
+
+server
+   .post("/nimportequoi")
+   .expect("Content-type",/text/)
+   .expect(400) // THis is HTTP response
+   .end(function(err,res){
+      assert.strictEqual(null,err);
+});
+
 server
    .post("/searchMovie")
    .send({"movie": "star wars"})
