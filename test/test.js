@@ -7,7 +7,7 @@ const assert = require('assert');
 var server = supertest.agent("http://localhost/app");
 
 
-// Requete get
+// Requetes get
 server
    .get("")
    .expect("Content-type",/text/)
@@ -40,9 +40,15 @@ server
       assert.strictEqual(null,err);
 });
 
+server
+   .get("/no-poster.jpg")
+   .expect("Content-type",/image/)
+   .expect(200) // THis is HTTP response
+   .end(function(err,res){
+      assert.strictEqual(null,err);
+});
 
-// Requete Post
-
+// Requetes Post
 server
    .post("/nimportequoi")
    .expect("Content-type",/text/)
