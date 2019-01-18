@@ -127,6 +127,6 @@ function openMovie(movie){
 	})
 }
 
-function ajouterFilm(){
-	console.log("Entree dans la fonction d'ajout de film");
+function addMovie(){
+	$("<div class='modal-cont'><div>Name: <input></div><div>Year:<input></div></div>").appendTo('body').modal({fadeDuration: 100});
 }
