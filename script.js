@@ -32,7 +32,7 @@ function search(){
 			if (data[movie].genres){
 				genre = data[movie].genres.replace(/,/g, ", ")
 			}
-			data[movie].runtimeMinutes = data[0].runtimeMinutes || "?"
+			data[movie].runtimeMinutes = data[movie].runtimeMinutes || "?"
 			let cast = ""
 			if (data[movie].cast){
 				castTab = data[movie].cast.split(",")
