@@ -48,6 +48,14 @@ server
       assert.strictEqual(null,err);
 });
 
+server
+   .get("/logo.png")
+   .expect("Content-type",/image/)
+   .expect(200) // THis is HTTP response
+   .end(function(err,res){
+      assert.strictEqual(null,err);
+});
+
 // Requetes Post
 server
    .post("/nimportequoi")
