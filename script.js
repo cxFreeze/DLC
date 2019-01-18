@@ -76,12 +76,12 @@ function getPersonImage(person){
 		return new Promise((resolve,reject) => {
 			$.getJSON("https://api.themoviedb.org/3/find/"+person+"?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&external_source=imdb_id", (json) => {
 				if (!json.person_results[0] || json.person_results[0].profile_path==null) {
-					resolve('')	
+					resolve('app/no-poster.jpg')	
 					return
 				}
 				resolve('http://image.tmdb.org/t/p/w200/' + json.person_results[0].profile_path)				
 				}).fail(function(){ 
-					resolve('');
+					resolve('app/no-poster.jpg');
 				});	
 			})
 }
