@@ -4,7 +4,7 @@ const assert = require('assert');
 
 // This agent refers to PORT where the program is running.
 
-var server = supertest.agent("http://localhost/app");
+var server = supertest.agent("http://localhost:8000/app");
 
 
 // Requetes get
