@@ -14,21 +14,21 @@
 			<img style="height:50px; margin-right:8px;" src="logo.png">
 			<span><h2 class="title">PROJET DLC</h2></span>
 			<span class="searchbar" id="searchbar">
-				<input id="searchMovie" type="text" placeholder="Chercher un film">
+				<input id="searchMovie" type="text" placeholder="find a movie">
 				<button class="searchbutton" onclick="search()"><i class="fa fa-search"></i></button>
-				<button class="searchbutton" onclick="openAddMovie()"><i class="fa fa-plus"></i></button>
 			</span>
+			<button class="searchbutton addButton" onclick="openAddMovie()"><i class="fa fa-plus"></i></button>
 		</div>	
 		<div class="w3-container w3-centered" style="padding:0 !important">
 		  <table class="w3-table-all">
 			<thead>
 			  <tr class="w3-black">
 				<th>Poster</th>
-				<th>Titre</th>
-				<th>Durée</th>
+				<th>Title</th>
+				<th>Runtime</th>
 				<th>Genres</th>
-				<th>Acteurs</th>
-				<th>Note</th>
+				<th>Cast</th>
+				<th>Rating</th>
 			  </tr>
 			</thead>
 			<tbody id="movietable">

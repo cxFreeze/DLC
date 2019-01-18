@@ -48,9 +48,14 @@ td{
 	align-items: center;
 }
 
+.addButton{
+	position: absolute;
+	right: 10%;
+	transform: translate(10%, 0);
+}
+
 .searchbutton{
-	height:40px;
-	width:40px;
+	padding:10px;
 }
 
 .ajoutfilmbutton{
@@ -74,7 +79,7 @@ td{
   padding-right:70px !important;
   min-width:500px !important;
   max-width:80% !important;
-  width:auto  !important;
+  width:auto !important;
 }
 
 .modal-left {

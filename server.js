@@ -44,7 +44,7 @@ app.post('/app/getMovieDetails', function (req, res) {
 
 app.post('/app/addMovie', function (req, res) {
 	const json = req.body;
-	connection.query('INSERT INTO movies(tconst, originalTitle, startYear, averageRating, runtimeMinutes) values(?,?,?,?,?)', [crypto.randomBytes(8).toString("hex"), json['title'], json['year'],json['note'],json['time']], 
+	connection.query('INSERT INTO movies(tconst, originalTitle, startYear, averageRating, runtimeMinutes, genres) values(?,?,?,?,?,?)', [crypto.randomBytes(8).toString("hex"), json['title'], json['year'],json['note'],json['time'],json['genres']], 
 	(error, results, fields) => {
 		error ? res.sendStatus(500) : res.send("OK");
 		res.end();
