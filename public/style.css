@@ -94,3 +94,7 @@ img {
   flex: 1;
   font-size: 20px;
 }
+
+.input-add {
+	padding:5px;
+}

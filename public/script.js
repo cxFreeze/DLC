@@ -131,16 +131,17 @@ function openMovie(movie){
 
 function openAddMovie(){
 	$("<div class='modal-cont'>\
-			<div>Name: <input id='title'></div>\
-			<div>Year:<input id='year'></div>\
-			<div>Note:<input id='note'></div>\
-			<div>Time:<input id='time'></div>\
-			<button onclick='addMovie()'>SEND</button</div>").appendTo('body').modal({fadeDuration: 100});
+			<div class='input-add'>Name: <input id='title'></div>\
+			<div class='input-add'>Year: <input id='year'></div>\
+			<div class='input-add'>Note: <input id='note'></div>\
+			<div class='input-add'>Time: <input id='time'></div>\
+			<button onclick='addMovie()'>SEND</button></div>").appendTo('body').modal({fadeDuration: 100});
 }
 
 function addMovie(){
-	$.post("addMovie", {title: $("#title").val(), year: $("#year").val(), note: number($("#note").val())*2, time: $("#time").val()}, function (data, status) {
+	$.post("addMovie", {title: $("#title").val(), year: $("#year").val(), note: Number($("#note").val())*2, time: $("#time").val()}, function (data, status) {
 		console.log(data)
+		$.modal.close();
 	}).fail(function(){ 
 		console.log('something went wrong please try again');
 	});
