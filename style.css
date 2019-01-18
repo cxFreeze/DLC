@@ -53,6 +53,11 @@ td{
 	width:40px;
 }
 
+.ajoutfilmbutton{
+	height:40px;
+	width:140px;
+}
+
 .movie-modal{
 	display:flex;
 }

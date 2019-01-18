@@ -1,4 +1,6 @@
+// 1er recherche pour la page d'accueil
 search()
+
 $('#searchbar').on('keypress',function(e) {
     if(e.which == 13) {
         search();
@@ -123,4 +125,8 @@ function openMovie(movie){
 		}
 		$("<div class='modal-cont'><div class='movie-modal'><div class='modal-left'><img style='width:180px; margin-top:22px' src='"+image+"'></div><div class='modal-right'><h2>"+data[0].originalTitle+"</h2><div>"+data[0].startYear+" - "+note+" - "+genre+"</div><div>"+data[0].runtimeMinutes+" min.</div><div style='margin:15px 0 7px 0;'>Cast:</div><div>"+persons+"</div></div></div></div></div>").appendTo('body').modal({fadeDuration: 100});
 	})
+}
+
+function ajouterFilm(){
+	console.log("Entree dans la fonction d'ajout de film");
 }
