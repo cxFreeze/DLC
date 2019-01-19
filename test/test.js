@@ -26,7 +26,7 @@ server
 
 server
    .get("/style.css")
-   .expect("Content-type",/text/)
+   .expect("Content-type",/css/)
    .expect(200) // THis is HTTP response
    .end(function(err,res){
       assert.strictEqual(null,err);
@@ -34,7 +34,7 @@ server
 
 server
    .get("/script.js")
-   .expect("Content-type",/text/)
+   .expect("Content-type",/javascript/)
    .expect(200) // THis is HTTP response
    .end(function(err,res){
       assert.strictEqual(null,err);
