@@ -9,7 +9,7 @@ var server = supertest.agent("http://localhost:8000/app");
 
 // Requetes get
 server
-   .get("")
+   .get("/")
    .expect("Content-type",/text/)
    .expect(200) // THis is HTTP response
    .end(function(err,res){
