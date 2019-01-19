@@ -19,7 +19,7 @@ server
 server
    .get("/nimportequoi")
    .expect("Content-type",/text/)
-   .expect(400) // THis is HTTP response
+   .expect(404) // THis is HTTP response
    .end(function(err,res){
       assert.strictEqual(null,err);
 });
