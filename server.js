@@ -8,7 +8,7 @@ const	http = require('http'),
 const poolCluster = mysql.createPoolCluster();
 
 poolCluster.add('MASTER', {
-  connectionLimit : 5,
+  connectionLimit : 50,
   host     : '148.60.11.202',
   user     : 'user',
   password : 'mypassword',
@@ -16,7 +16,7 @@ poolCluster.add('MASTER', {
 });
 
 poolCluster.add('SLAVE1', {
-  connectionLimit : 5,
+  connectionLimit : 50,
   host     : '148.60.11.76',
   user     : 'user',
   password : 'mypassword',
