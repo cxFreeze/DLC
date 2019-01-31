@@ -23,7 +23,7 @@ function search(){
 	$('#movietable').empty()
 	let res = ""
 	$('#movietable').append("<tr><td colspan='6'><img style='height:350px' src='spinner.svg'></td></tr>");
-	$.post("searchMovie", {movie: $("#searchMovie").val()}, async function (data, status) {
+	$.post("http://148.60.11.217/app2/searchMovie", {movie: $("#searchMovie").val()}, async function (data, status) {
 		for (let movie in data) {
 			let poster = await getMoviePoster(data[movie].tconst)
 			let note = createRating(data[movie].averageRating)
@@ -90,7 +90,7 @@ function getPersonImage(person){
 }
 
 function openActor(person){
-	$.post("getPersonDetails", {person: person}, async function (data, status) {
+	$.post("http://148.60.11.217/app2/getPersonDetails", {person: person}, async function (data, status) {
 		if (data[0] == undefined){
 			return
 		}
@@ -108,7 +108,7 @@ function openActor(person){
 }
 
 function openMovie(movie){
-	$.post("getMovieDetails", {movie: movie}, async function (data, status) {
+	$.post("http://148.60.11.217/app2/getMovieDetails", {movie: movie}, async function (data, status) {
 		if (data[0] == undefined){
 			return
 		}
@@ -144,7 +144,7 @@ function openAddMovie(){
 }
 
 function addMovie(){
-	$.post("addMovie", {title: $("#title").val(), year: $("#year").val(), note: Number($("#note").val())*2, time: $("#time").val(),genres: $("#genres").val()}, function (data, status) {
+	$.post("http://148.60.11.217/app2/addMovie", {title: $("#title").val(), year: $("#year").val(), note: Number($("#note").val())*2, time: $("#time").val(),genres: $("#genres").val()}, function (data, status) {
 		console.log(data)
 		$.modal.close();
 	}).fail(function(){ 
