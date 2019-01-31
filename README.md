@@ -1,5 +1,3 @@
-Consignes du prof: Faire des services, Faire des routes, exlpiquer l'intégration en continue et le monitoring.
-
 # DLC
 http://148.60.11.217
 
