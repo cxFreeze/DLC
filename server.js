@@ -33,7 +33,7 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 
 app.use('/app', express.static(__dirname + '/public'));
 
-app.post('/app/searchMovie', function (req, res) {
+app.post('/app2/searchMovie', function (req, res) {
 	const json = req.body;
 	poolCluster.getConnection(function (err, connection) {
 		if(err){
@@ -50,7 +50,7 @@ app.post('/app/searchMovie', function (req, res) {
 	});
 })
 
-app.post('/app/getMovieDetails', function (req, res) {
+app.post('/app2/getMovieDetails', function (req, res) {
 	const json = req.body;
 	poolCluster.getConnection(function (err, connection) {
 		if(err){
@@ -67,7 +67,7 @@ app.post('/app/getMovieDetails', function (req, res) {
 	});
 })
 
-app.post('/app/addMovie', function (req, res) {
+app.post('/app2/addMovie', function (req, res) {
 	const json = req.body;
 	poolCluster.getConnection(function (err, connection) {
 		if(err){
@@ -84,7 +84,7 @@ app.post('/app/addMovie', function (req, res) {
 	});
 })
 
-app.post('/app/getPersonDetails', function (req, res) {
+app.post('/app2/getPersonDetails', function (req, res) {
 	const json = req.body;
 	poolCluster.getConnection(function (err, connection) {
 		if(err){
