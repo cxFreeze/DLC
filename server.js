@@ -14,7 +14,7 @@ poolCluster.add('MASTER', {
   password : 'mypassword',
   database : 'db'
 });
-
+/*
 poolCluster.add('SLAVE1', {
   connectionLimit : 50,
   host     : '148.60.11.76',
@@ -22,6 +22,7 @@ poolCluster.add('SLAVE1', {
   password : 'mypassword',
   database : 'db'
 });
+*/
 
 const app = express()
 
