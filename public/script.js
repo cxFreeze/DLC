@@ -147,6 +147,7 @@ function addMovie(){
 	$.post("http://148.60.11.217/app2/addMovie", {title: $("#title").val(), year: $("#year").val(), note: Number($("#note").val())*2, time: $("#time").val(),genres: $("#genres").val()}, function (data, status) {
 		console.log(data)
 		$.modal.close();
+		$(".modal-cont").remove();
 	}).fail(function(){ 
 		console.log('something went wrong please try again');
 	});
