@@ -15,7 +15,7 @@ JENKINS :
 
 http://148.60.11.217/jenkins
 
-admin:493dffbd6bd745d39180a4895cb30697
+493dffbd6bd745d39180a4895cb306
 
 cAdvisor : 
 
