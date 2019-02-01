@@ -76,7 +76,7 @@ app.post('/app2/addMovie', function (req, res) {
 			res.end();
 			return;
 		}
-		connection.query('INSERT INTO movies(tconst, originalTitle, startYear, averageRating, runtimeMinutes, genres) values(?,`?`,?,?,?,?)', [crypto.randomBytes(8).toString("hex"), json['title'], json['year'],json['note'],json['time'],json['genres']], 
+		connection.query('INSERT INTO movies(tconst, originalTitle, startYear, averageRating, runtimeMinutes, genres) values(?,?,?,?,?,?)', [crypto.randomBytes(8).toString("hex"), json['title'], json['year'],json['note'],json['time'],json['genres']], 
 		(error, results, fields) => {
 			connection.release();
 			error ? res.sendStatus(500) : res.send("OK");
