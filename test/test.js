@@ -5,6 +5,7 @@ const assert = require('assert');
 // This agent refers to PORT where the program is running.
 
 var server = supertest.agent("http://localhost:8000/app");
+var server2 = supertest.agent("http://localhost:8000/app");
 
 
 // Requetes get
@@ -65,7 +66,7 @@ server
 });
 
 // // Requetes Post
-server
+server2
    .post("/nimportequoi")
    .expect("Content-type",/text/)
    .expect(404) // THis is HTTP response
@@ -73,7 +74,7 @@ server
       assert.strictEqual(null,err);
 });
 
-server
+server2
    .post("/searchMovie")
    .send({"movie": "star wars"})
    .expect("Content-type",/json/)
@@ -82,7 +83,7 @@ server
       assert.strictEqual(null,err);
 });
 
-server
+server2
    .post("/getMovieDetails")
    .send({"movie": "tt1485796"})
    .expect("Content-type",/json/)
@@ -91,7 +92,7 @@ server
       assert.strictEqual(null,err);
 });
 
-server
+server2
    .post("/getPersonDetails")
    .send({"person": "nm0413168"})
    .expect("Content-type",/json/)
